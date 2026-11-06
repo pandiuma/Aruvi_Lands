@@ -346,10 +346,11 @@ Thank you.
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/lands"
-        );
+        const API_URL = import.meta.env.VITE_API_URL;
 
+        const response = await fetch(
+          `${API_URL}/api/lands`
+        );
         if (!response.ok) {
           throw new Error("Unable to load land projects.");
         }
@@ -918,10 +919,10 @@ Thank you.
                             project.image_url.trim() !== ""
                             ? project.image_url.startsWith("http")
                               ? project.image_url
-                              : `http://localhost:5000${project.image_url.startsWith("/")
+                              : `${API_URL}${project.image_url.startsWith("/")
                                 ? project.image_url
                                 : `/uploads/${project.image_url}`
-                              }`
+                                }`
                             : "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=85"
                         }
                         alt={project.title}
@@ -944,7 +945,7 @@ Thank you.
                       <p>
                         {project.plot_size
                           ? `${project.plot_size} ${project.plot_size_unit || "sq.ft"
-                          }`
+                        }`
                           : "Multiple plot sizes"}
 
                         <span> · </span>

@@ -8,12 +8,18 @@ const path = require("path");
 const db = require("./config/db");
 
 const landRoutes = require("./routes/landRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
 // Middleware
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: allowedOrigins
 }));
 
 app.use(express.json());
@@ -24,6 +30,9 @@ app.use(express.urlencoded({
 
 // Land project routes
 app.use("/api/lands", landRoutes);
+
+// Admin routes
+app.use("/api/admin", adminRoutes);
 
 // Serve uploaded images
 app.use(
@@ -65,7 +74,7 @@ app.get("/api/db-test", async (req, res) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(
         `Aruvi Lands server running on port ${PORT}`
     );
