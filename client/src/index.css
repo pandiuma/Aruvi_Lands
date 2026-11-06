@@ -1,0 +1,43 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #263b30;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a {
+  transition: all 0.25s ease;
+}
+
+img {
+  max-width: 100%;
+}
